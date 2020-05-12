@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { LoginState, Register, Headers, IndexState, PostsState } from '../interface'
+import { LoginState, Register, Headers, IndexState, PostsState, UserData } from '../interface'
 
 // https://github.com/axios/axios#custom-instance-defaults ← 設定の仕方
 // https://github.com/lynndylanhurley/devise_token_auth/blob/275da3c1960b60adf9c49adfff15725a7c60faf9/app/controllers/devise_token_auth/concerns/set_user_by_token.rb#L26
@@ -97,7 +97,21 @@ export const handleLogout = (setAppState: React.Dispatch<React.SetStateAction<In
     )
     .then(res => {
       sessionStorage.removeItem("sokabook_auth")
-      setAppState({loggedInStatus: false, user: { id: -1, email: '', name: '', allow_password_change: false }})
+      setAppState({
+        loggedInStatus: false,
+        user: {
+            id: -1,
+            email: '',
+            name: '',
+            allow_password_change: false, 
+            nickname: '',
+            image: {url: '', current_path: ''},
+            undergraduate: '',
+            subject: '',
+            generation: '',
+            occupation: ''
+          }
+        })
       console.log("Logout success", res)
     })
     .catch(error => {
@@ -125,6 +139,33 @@ export const handleSuccessfulAuth = (recUser: Register, setAppState: React.Dispa
     })
     .catch(error => {
       console.log("Failed registrations.", error)
+    })
+}
+
+export const updateUser = (recUser: UserData, setAppState: React.Dispatch<React.SetStateAction<IndexState>>): void => {
+  const axiosWithCredentials = createCredencialsAxios()
+  axiosWithCredentials
+    .put(
+      'http://localhost:3020/auth',
+      {
+        name: recUser.name,
+        nickname: recUser.nickname,
+        email: recUser.email,
+        image: recUser.image,
+        undergraduate: recUser.undergraduate,
+        subject: recUser.subject,
+        generation: recUser.generation,
+        occupation: recUser.occupation,
+      }
+    )
+    .then((res): void => {
+      if (res.data.status === "success"){
+        console.log("Success Edit!", res)
+        setAppState({ loggedInStatus: true, user: res.data.data })
+      }
+    })
+    .catch((error): void => {
+      console.log("Edit error.", error)
     })
 }
 

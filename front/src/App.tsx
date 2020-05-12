@@ -14,7 +14,18 @@ import { Dashboard } from './component/dashboard';
 export const App: React.FC = () => {
   const [AppState, setAppState] = useState<IndexState>({
     loggedInStatus: false,
-    user: { id: -1, email: '', name: '', allow_password_change: false }
+    user: {
+      id: -1,
+      email: '',
+      allow_password_change: false,
+      name: '',
+      nickname: '',
+      image: {url: '', current_path: ''},
+      undergraduate: '',
+      subject: '',
+      generation: '',
+      occupation: '',
+    }
   })
 
   // const toggleOpen = (): void => {
@@ -57,7 +68,7 @@ export const App: React.FC = () => {
       />
       <PrivateRoute 
         exact path={"/dashboard"} 
-        children={<Dashboard {...AppState}/> }
+        children={<Dashboard {...AppState} setAppState={setAppState} /> }
       />
       <Route 
         exact path={"/registration"} 

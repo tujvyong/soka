@@ -1,16 +1,18 @@
 import React from 'react';
 
+export type ImageType = {url: string, current_path: string}
+
 export interface UserData {
   id: number;
   email: string;
   allow_password_change: boolean;
-  name?: string;
-  nickname?: string;
-  image?: string;
-  undergraduate?: string;
-  subject?: string;
-  generation?: number;
-  occupation?: string;
+  name: string;
+  nickname: string;
+  image: ImageType;
+  undergraduate: string;
+  subject: string;
+  generation: string;
+  occupation: string;
 }
 
 export interface IndexState {
