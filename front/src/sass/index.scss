@@ -1,0 +1,60 @@
+@import 'App.scss';
+
+*{
+    box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+    font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body{
+    color: #2d3133;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    font-family: 'Avenir Next', 'Hiragino Sans', sans-serif;
+    background:#f5f5f5 url("https://cdn.footystats.org/img/noise-2.png");
+}
+ul, li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #2d3133;
+}
+a.white{
+    color: #fff;
+}
+a:hover{
+    text-decoration: underline;
+}
+.cf:after,.row:after{
+	content:".";
+	display:block;
+	clear:both;
+	height:0;
+	visibility:hidden;
+	font-size:0;
+}
+.cf,.row{display:inline-table;min-height:1%;}
+* html .cf, * html .row{height:1%;}
+.cf{display:block;}
+
+.mb05{margin-bottom: 0.5em;}
+.mb1{margin-bottom: 1em;}
+.ac{text-align: center;}
